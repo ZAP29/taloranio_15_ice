@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contador de Granizados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilo.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <main class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Granizados">
+            </div>
+            <h1>Contador de Ventas - Granizados</h1>
+        </header>
+
+        <section class="tabla">
+            <div class="fila encabezado">
+                <div>Producto</div>
+                <div>Precio</div>
+                <div>-</div>
+                <div>Cantidad</div>
+                <div>+</div>
+                <div>Subtotal</div>
+            </div>
+
+            {% for nombre, cantidad in ventas.items() %}
+            <div class="fila {{ nombre|lower }}">
+                <div>{{ nombre }}</div>
+                <div>${{ precios[nombre] }}</div>
+
+                <form action="/modificar" method="POST">
+                    <input type="hidden" name="nombre" value="{{ nombre }}">
+                    <input type="hidden" name="accion" value="restar">
+                    <button class="btn restar">-</button>
+                </form>
+
+                <div class="cantidad">{{ cantidad }}</div>
+
+                <form action="/modificar" method="POST">
+                    <input type="hidden" name="nombre" value="{{ nombre }}">
+                    <input type="hidden" name="accion" value="sumar">
+                    <button class="btn sumar">+</button>
+                </form>
+
+                <div>${{ precios[nombre] * cantidad }}</div>
+            </div>
+            {% endfor %}
+        </section>
+
+        <section class="resumen">
+            <p>Total Granizados: <strong>{{ total }}</strong></p>
+            <p>Venta del día: <strong>${{ ganancia }}</strong></p>
+        </section>
+
+        <div class="guardar">
+            <a href="/guardar" class="btn-guardar">Descargar Ventas</a>
+        </div>
+        <div class="reiniciar">
+            <a href="/reiniciar" class="btn-reiniciar">Reiniciar Contador</a>
+        </div>
+    </main>
+</body>
+</html>
