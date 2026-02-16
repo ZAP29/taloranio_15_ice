@@ -10,15 +10,15 @@ app = Flask(__name__)
 
 # Precios fijos
 PRECIOS = {
-    "TRAVESURA": 17000,
-    "FANTASIA": 17000,
-    "69": 17000,
-    "LENGUETAZO": 17000,
-    "ORGASMO": 17000,
-    "RECUERDOS": 17000,
-    "SEDUCCION": 17000,
-    "DESEO": 17000,
-    "REVOLCON": 17000,
+    "TRAVESURA": 18000,
+    "FANTASIA": 18000,
+    "69": 18000,
+    "LENGUETAZO": 18000,
+    "ORGASMO": 18000,
+    "RECUERDOS": 18000,
+    "SEDUCCION": 18000,
+    "DESEO": 18000,
+    "REVOLCON": 18000,
     "VIRGEN": 15000
 
 }
